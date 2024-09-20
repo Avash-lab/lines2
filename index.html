@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+            color: black;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        h1, h2, p {
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background-color: #333;
+        }
+        #proposal {
+            font-size: 2rem;
+            margin-top: 30px;
+            display: none;
+        }
+        #proposal button {
+            background-color: black;
+            color: white;
+        }
+        #nextPage {
+            display: none;
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+        #photo {
+            display: none;
+            margin-top: 20px;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="intro1">Hey SWEETI,</h1>
+    <h2 id="intro2">Let me handle you</h2>
+
+    <p id="memory1" style="display:none;">Do you believe in love at first sight</p>
+
+    <button id="nextMemory" onclick="nextMemory()">Next</button>
+
+    <div id="proposal">
+        <h2>should I walk by again?</h2>
+        <h1>DO YOU FEEL IT?</h1>
+        <button onclick="acceptProposal()">YES</button>
+        <button onclick="declineProposal()">NO</button>
+    </div>
+
+    <!-- New section that appears after YES -->
+    <div id="nextPage">
+        <h2>THATS THE SPIRIT</h2>
+        <p>HURRAYYYYYYY</p>
+        <img id="photo" src="your-photo-url.jpg" alt="Celebration Photo">
+    </div>
+
+    <script>
+        let memoryIndex = 0;
+        const memories = ["memory1"];
+        const introElements = ["intro1", "intro2"];
+        
+        function nextMemory() {
+            // Hide all intro elements
+            introElements.forEach(id => {
+                document.getElementById(id).style.display = 'none';
+            });
+            // Hide all memory elements
+            memories.forEach(id => {
+                document.getElementById(id).style.display = 'none';
+            });
+
+            if (memoryIndex < memories.length) {
+                document.getElementById(memories[memoryIndex]).style.display = 'block';
+                memoryIndex++;
+            } else {
+                document.getElementById('nextMemory').style.display = 'none';
+                document.getElementById('proposal').style.display = 'block';
+            }
+        }
+
+        function acceptProposal() {
+            alert("HURRAYYYYYYY");
+            // Change the page style
+            document.body.style.backgroundColor = '#ffcccb';
+            document.body.style.color = '#333';
+            // Hide all sections before showing the next page
+            document.getElementById('intro1').style.display = 'none';
+            document.getElementById('intro2').style.display = 'none';
+            document.getElementById('memory1').style.display = 'none';
+            document.getElementById('proposal').style.display = 'none';
+            document.getElementById('nextMemory').style.display = 'none'; // Hide the next button
+            document.getElementById('nextPage').style.display = 'block'; // Show the new section
+            document.getElementById('photo').style.display = 'block'; // Show the photo
+        }
+
+        function declineProposal() {
+            alert("Oh no! 😢");
+            // Hide all sections before showing the next page
+            document.getElementById('intro1').style.display = 'none';
+            document.getElementById('intro2').style.display = 'none';
+            document.getElementById('memory1').style.display = 'none';
+            document.getElementById('proposal').style.display = 'none';
+            document.getElementById('nextMemory').style.display = 'none'; // Hide the next button
+            document.getElementById('nextPage').style.display = 'block'; // Show the new section
+        }
+    </script>
+</body>
+</html>
